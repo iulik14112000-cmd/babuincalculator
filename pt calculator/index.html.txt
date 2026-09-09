@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+
+            background-image: url("fundal.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator {
+            background-color: white;
+            padding: 20px;
+            border-radius: 20px;
+            width: 300px;
+        }
+
+        #display {
+            width: 100%;
+            box-sizing: border-box;
+            height: 60px;
+            font-size: 25px;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        button {
+            height: 55px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .number {
+            background-color: #eeeeee;
+        }
+
+        .operator {
+            background-color: #90ee90;
+        }
+
+        .clear {
+            background-color: #ff6666;
+            color: white;
+        }
+
+        .equals {
+            background-color: #66aaff;
+            color: white;
+        }
+
+        .messageClear {
+            background-color: lightblue;
+            grid-column: span 4;
+        }
+
+        #message {
+            color: green;
+            font-size: 20px;
+            text-align: center;
+            min-height: 25px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+
+        <input type="text" id="display" readonly>
+
+        <div class="buttons">
+
+            <button class="number" onclick="addNumber('7')">7</button>
+            <button class="number" onclick="addNumber('8')">8</button>
+            <button class="number" onclick="addNumber('9')">9</button>
+            <button class="operator" onclick="addNumber('/')">÷</button>
+
+            <button class="number" onclick="addNumber('4')">4</button>
+            <button class="number" onclick="addNumber('5')">5</button>
+            <button class="number" onclick="addNumber('6')">6</button>
+            <button class="operator" onclick="addNumber('*')">×</button>
+
+            <button class="number" onclick="addNumber('1')">1</button>
+            <button class="number" onclick="addNumber('2')">2</button>
+            <button class="number" onclick="addNumber('3')">3</button>
+            <button class="operator" onclick="addNumber('-')">−</button>
+
+            <button class="number" onclick="addNumber('0')">0</button>
+            <button class="clear" onclick="clearCalculator()">C</button>
+            <button class="equals" onclick="calculate()">=</button>
+            <button class="operator" onclick="addNumber('+')">+</button>
+
+            <button class="messageClear" onclick="clearMessage()">
+                Șterge textul
+            </button>
+
+        </div>
+
+        <div id="message"></div>
+
+    </div>
+
+    <script>
+        let display = document.getElementById("display");
+        let message = document.getElementById("message");
+
+        function addNumber(value) {
+            display.value += value;
+        }
+
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch {
+                display.value = "Eroare";
+            }
+        }
+
+        function clearCalculator() {
+            display.value = "";
+            message.textContent = "uligma e smecher";
+        }
+
+        function clearMessage() {
+            message.textContent = "";
+        }
+    </script>
+
+</body>
+</html>
